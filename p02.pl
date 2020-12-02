@@ -29,25 +29,19 @@ valid_password([Minimum, Maximum, [Code], CodeList]) :-
     Count >= Minimum,
     Count =< Maximum.
 
-valid_password2([Pos1, Pos2, [Code], CodeList]) :-
+valid_password_2([Pos1, Pos2, [Code], CodeList]) :-
     occurs_at_positions_once(CodeList, Code, Pos1, Pos2).
 
-count_valid_passwords(List, Count) :-
-    exclude(valid_password, List, List2),
+count_valid_passwords(Predicate, List, Count) :-
+    exclude(Predicate, List, List2),
     length(List, Count1),
     length(List2, Count2),
     Count is Count1 - Count2.
 
-count_valid_passwords2(List, Count) :-
-    exclude(valid_password2, List, List2),
-    length(List, Count1),
-    length(List2, Count2),
-    Count is Count1 - Count2.
-
-solution1(Answer) :-
+solution(1, Answer) :-
 	load_data(List),
-	count_valid_passwords(List, Answer).
+	count_valid_passwords(valid_password, List, Answer).
 
-solution2(Answer) :-
+solution(2, Answer) :-
 	load_data(List),
-	count_valid_passwords2(List, Answer).
+	count_valid_passwords(valid_password_2, List, Answer).
