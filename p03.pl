@@ -18,7 +18,7 @@ check_collision_for_line(Line, N, Dx) :-
 	nth0(Pos, Line, 35).
 
 lets_crash_into_some_trees([], _, _, _, _, 0).
-lets_crash_into_some_trees(_, Index, _, Dy, _, 0) :- Index mod Dy #= 0.
+lets_crash_into_some_trees(_, Index, _, Dy, _, 0) :- Index mod Dy > 0.
 lets_crash_into_some_trees([Line|Tail], Index, Dx, Dy, MaxY, Count) :-
 	NextIndex is Index + 1,
 	lets_crash_into_some_trees(Tail, NextIndex, Dx, Dy, MaxY, Acc),
