@@ -18,7 +18,8 @@ load_data(Data) :-
 	open('input2.txt', read, Stream),
 	phrase_from_stream(line(Data), Stream).
 
-occurrences_of(List, X, Count) :- aggregate_all(count, member(X, List), Count).
+occurrences_of(List, X, Count) :-
+	aggregate_all(count, member(X, List), Count).
 
 occurs_at_positions_once(List, X, Pos1, Pos2) :-
 	nth1(Pos1, List, X), not(nth1(Pos2, List, X));
